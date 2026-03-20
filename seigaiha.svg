@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="40" viewBox="0 0 80 40">
+  <defs>
+    <g id="wave">
+      <circle cx="0" cy="0" r="20" fill="none" stroke="#2d5a3d" stroke-width="0.5" opacity="0.08"/>
+      <circle cx="0" cy="0" r="16" fill="none" stroke="#2d5a3d" stroke-width="0.5" opacity="0.06"/>
+      <circle cx="0" cy="0" r="12" fill="none" stroke="#2d5a3d" stroke-width="0.5" opacity="0.05"/>
+      <circle cx="0" cy="0" r="8" fill="none" stroke="#2d5a3d" stroke-width="0.5" opacity="0.04"/>
+      <circle cx="0" cy="0" r="4" fill="none" stroke="#2d5a3d" stroke-width="0.5" opacity="0.03"/>
+    </g>
+    <!-- Clip to top half (arcs open upward) -->
+    <clipPath id="clip">
+      <rect x="-20" y="-20" width="40" height="20"/>
+    </clipPath>
+    <g id="semicircle" clip-path="url(#clip)">
+      <use href="#wave"/>
+    </g>
+  </defs>
+
+  <!-- Row 1: anchor at bottom of arcs, so y=20 puts tops at y=0 -->
+  <use href="#semicircle" x="0" y="20"/>
+  <use href="#semicircle" x="40" y="20"/>
+  <use href="#semicircle" x="80" y="20"/>
+
+  <!-- Row 2: offset by half, y=40 puts tops at y=20, overlapping row 1 -->
+  <use href="#semicircle" x="-20" y="40"/>
+  <use href="#semicircle" x="20" y="40"/>
+  <use href="#semicircle" x="60" y="40"/>
+  <use href="#semicircle" x="100" y="40"/>
+</svg>

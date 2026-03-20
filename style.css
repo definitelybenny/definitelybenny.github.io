@@ -1,0 +1,276 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --forest-green: #2d5a3d;
+  --forest-dark: #1e3a28;
+  --cinnabar: #a03a2a;
+  --cinnabar-light: #b8452e;
+  --parchment: #f0e8d8;
+  --parchment-dark: #e4d9c4;
+  --gold: #b8942e;
+  --gold-light: #c5a44e;
+  --text-dark: #2a2218;
+  --text-muted: #6b5d4d;
+}
+
+body {
+  font-family: 'Montserrat', system-ui, sans-serif;
+  background: var(--parchment);
+  color: var(--text-dark);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Seigaiha wave pattern overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("seigaiha.svg");
+  background-repeat: repeat;
+  background-size: 80px 40px;
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* Paper texture overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 101;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1, h2, h3 {
+  font-family: 'Libre Baskerville', Georgia, serif;
+}
+
+/* Nav */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 32px;
+}
+
+nav .logo {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--forest-green);
+  font-style: italic;
+}
+
+nav .links {
+  display: flex;
+  gap: 24px;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+nav .links a {
+  color: var(--text-dark);
+  transition: color 0.2s;
+}
+
+nav .links a:hover,
+nav .links a.active {
+  color: var(--forest-green);
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 40px 24px 16px;
+}
+
+.hero h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--forest-green);
+  margin-bottom: 4px;
+}
+
+.hero .subtitle {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 1.15rem;
+  color: var(--text-muted);
+}
+
+/* Crest / Logo */
+.crest {
+  display: flex;
+  justify-content: center;
+  padding: 24px 24px 40px;
+}
+
+.crest-placeholder {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 40% 40%, var(--cinnabar-light), var(--cinnabar));
+  border: 4px solid var(--gold);
+  box-shadow:
+    0 0 0 2px var(--cinnabar),
+    0 8px 32px rgba(42, 34, 24, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.crest-placeholder::after {
+  content: 'Logo';
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 1rem;
+  color: var(--gold-light);
+  font-style: italic;
+  opacity: 0.6;
+}
+
+/* App Grid */
+.apps {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px 48px;
+}
+
+.app-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.app-card {
+  background: var(--parchment-dark);
+  border: 1px solid rgba(42, 34, 24, 0.12);
+  border-radius: 8px;
+  padding: 24px 16px 20px;
+  text-align: center;
+  transition: box-shadow 0.2s, transform 0.2s;
+  box-shadow: 0 2px 8px rgba(42, 34, 24, 0.06);
+}
+
+.app-card:hover {
+  box-shadow: 0 4px 16px rgba(42, 34, 24, 0.12);
+  transform: translateY(-2px);
+}
+
+.app-icon {
+  width: 56px;
+  height: 56px;
+  background: var(--parchment);
+  border: 1px solid rgba(42, 34, 24, 0.1);
+  border-radius: 12px;
+  margin: 0 auto 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+}
+
+.app-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 2px;
+}
+
+.app-card .category {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--cinnabar);
+  text-transform: capitalize;
+  margin-bottom: 8px;
+}
+
+.app-card .description {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.app-card .privacy-link {
+  display: inline-block;
+  font-size: 0.75rem;
+  color: var(--forest-green);
+  font-weight: 500;
+  padding-top: 10px;
+  border-top: 1px solid rgba(42, 34, 24, 0.08);
+  width: 100%;
+  transition: color 0.2s;
+}
+
+.app-card .privacy-link:hover {
+  color: var(--cinnabar);
+}
+
+/* Footer */
+footer {
+  margin-top: auto;
+  text-align: center;
+  padding: 32px 24px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+footer .motto {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--forest-green);
+  margin-top: 4px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .app-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .crest-placeholder {
+    width: 160px;
+    height: 160px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-grid {
+    grid-template-columns: 1fr;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .hero h1 {
+    font-size: 1.6rem;
+  }
+
+  nav {
+    padding: 16px;
+  }
+
+  .apps {
+    padding: 0 16px 32px;
+  }
+}
