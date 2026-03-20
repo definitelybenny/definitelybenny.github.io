@@ -52,7 +52,7 @@ A minimal, functional GitHub Pages site at `definitelybenny.dev` serving as a la
 - Sunday Drive (Casual)
 - Board Game Empire (Idle Tycoon)
 - Iron Log (Fitness)
-- 2048 clone (unnamed, Puzzle — include or omit based on readiness)
+- 2048 clone (unnamed, Puzzle — omit for v1, add when named)
 
 ### Visual Design
 
@@ -72,7 +72,7 @@ A minimal, functional GitHub Pages site at `definitelybenny.dev` serving as a la
 
 ## GitHub Pages Setup
 
-1. Rename repo to `byamagata.github.io` (or configure as the primary GitHub Pages repo)
+1. Rename repo to `byamagata.github.io` (GitHub username: `byamagata`)
 2. Enable GitHub Pages in repo settings (deploy from `main` branch, root)
 3. Add CNAME file with `definitelybenny.dev`
 4. Configure DNS for `definitelybenny.dev` to point to GitHub Pages IPs
