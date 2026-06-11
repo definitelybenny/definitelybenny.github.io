@@ -183,6 +183,14 @@ nav .links a.active {
   align-items: center;
   justify-content: center;
   font-size: 1.6rem;
+  overflow: hidden;
+}
+
+.app-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .app-card h3 {
