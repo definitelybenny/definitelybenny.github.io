@@ -1,0 +1,224 @@
+{
+  "_readme": "Everything on the site is drawn from this file. Add a question to 'questions', a blurred teaser to 'soon', or an app to 'bench'. See README.md.",
+
+  "questions": [
+    {
+      "id": "pokopia",
+      "question": "Which furniture keeps four Pokémon roommates happy?",
+      "game": "Pokémon Pokopia",
+      "name": "Pokopia Roommate Calculator",
+      "note": "start here, it’s the fun one",
+      "tilt": "-1.6deg",
+      "what": "Pick two to four Pokémon who share a house. It finds the favorite categories they have in common and lists the furniture and items that make every one of them happy.",
+      "useWhen": [
+        "You’re about to spend materials on a room and want everyone in it to like it.",
+        "A new Pokémon moved in and you’re not sure they fit the house."
+      ],
+      "thenAsk": [
+        "What if it worked backwards, from a room you built to the Pokémon who’d love it?",
+        "Could it place a whole town at once instead of one house?",
+        "The data is a public list. What else could you answer with it?"
+      ],
+      "links": [
+        { "label": "Open the calculator", "href": "https://definitelybenny.dev/pokopia-roommate-calc/", "primary": true },
+        { "label": "See the code", "href": "https://github.com/definitelybenny/pokopia-roommate-calc" }
+      ],
+      "page": "tools/pokopia/",
+      "next": "regional",
+      "detail": {
+        "status": "Live · Pokémon Pokopia",
+        "lede": "The Pokopia Roommate Calculator. Pick two to four Pokémon who share a house, and it shows the favorite categories they have in common and the furniture that makes every one of them happy.",
+        "what": {
+          "title": "Everyone gets a favorite.",
+          "body": [
+            "Every Pokémon in Pokopia has favorite categories of things. Put a few of them in one house and the trick is finding what they all like. That overlap is the answer, and the calculator draws it for you."
+          ],
+          "callout": "the middle of the circles is the whole tool, honestly",
+          "figure": { "type": "venn" }
+        },
+        "how": {
+          "title": "Three taps, one happy house.",
+          "steps": [
+            { "title": "Add your roommates", "body": "Pick two to four Pokémon who live together or are about to." },
+            { "title": "Read the overlap", "body": "It lists the favorite categories every one of them shares." },
+            { "title": "Shop the list", "body": "Each shared category comes with the furniture and items that fit it. Build from that." }
+          ],
+          "headsUp": "The favorites come from Serebii’s Pokopia list, and Serebii’s contributors are still filling in some item lists, so a few results may be incomplete."
+        },
+        "works": {
+          "title": "It’s one set intersection. Mostly.",
+          "body": [
+            "Each roommate’s favorite categories are a set. Keep only the categories that are in every set and you have what they share.",
+            "Then one more step: an item can sit in more than one category, so two roommates with different favorites can still love the same lamp. The calculator counts who enjoys each item and keeps the ones everyone does."
+          ],
+          "code": "// each roommate's favorite categories, as a Set\nconst setsList = state.selected.map(n => new Set(POKEMON[n]));\n\n// keep the categories every roommate has\nconst sharedCategories = [...setsList[0]]\n  .filter(c => setsList.every(s => s.has(c)));\n\n// and any item that every roommate enjoys, whatever the category\nconst sharedItems = [...itemToPokemon.entries()]\n  .filter(([, pokes]) => pokes.size === state.selected.length)\n  .map(([item]) => item);",
+          "callout": "straight from app.js, lightly trimmed"
+        },
+        "ideas": {
+          "title": "Where you could take it next.",
+          "items": [
+            { "tag": "flip it", "title": "Room first, Pokémon second", "body": "Start from a room you already decorated and ask which Pokémon would love living there." },
+            { "tag": "go bigger", "title": "Plan the whole town", "body": "Instead of one house, place every Pokémon in the house where it’s happiest." },
+            { "tag": "new data, same trick", "title": "Ask a different question", "body": "The data is a public list. Any game with “who likes what” works the same way." }
+          ]
+        }
+      }
+    },
+    {
+      "id": "regional",
+      "question": "How do you practice for a Regional without leaving the house?",
+      "game": "Pokémon VGC · Showdown",
+      "name": "Mock Regional Helper",
+      "note": "it keeps score so you can just play",
+      "tilt": "1.3deg",
+      "what": "A Tampermonkey script for Pokémon Showdown. Ladder Bo3 sets like normal and it treats them as a Regional: it records every game, saves the replays, tracks your ELO, and moves you through Day 1, Day 2 and Top Cut. At the end it writes the Discord post or draws a report card.",
+      "useWhen": [
+        "A real event is coming and you want tournament day to feel familiar.",
+        "You want to know which leads actually win, not which ones feel like they win.",
+        "Your friends want proof of the run."
+      ],
+      "thenAsk": [
+        "Your record decides your stage. How would you write that rule as code?",
+        "What would your win rate per lead pair say about your team?",
+        "It exports every battle as JSON. What would you build on top of that?"
+      ],
+      "links": [
+        { "label": "How to install", "href": "https://github.com/definitelybenny/mock-regional-helper#install", "primary": true },
+        { "label": "See the code", "href": "https://github.com/definitelybenny/mock-regional-helper" }
+      ],
+      "page": "tools/mock-regional/",
+      "next": "restyler",
+      "detail": {
+        "status": "Live · Pokémon Showdown",
+        "lede": "Mock Regional Helper. Play your Bo3 sets on the Showdown ladder and it runs the event around you: replays, ELO, Day 1 to Top Cut, and a post ready for Discord.",
+        "what": {
+          "title": "A Regional, minus the travel.",
+          "body": [
+            "A mock regional is a practice run: you play the ladder as if it were an event and see how far your team would get. The hard part is the bookkeeping. This script does all of it while you play.",
+            "It only watches the battle traffic, saves replays and formats posts. It never picks moves, queues or plays for you."
+          ],
+          "callout": "the report card is my favorite part",
+          "figure": { "type": "image", "src": "assets/shots/mock-regional-report-card.jpg", "alt": "A Mock Regional Helper report card showing a run’s record, stage, ELO, team, and one row per set", "caption": "the report card it draws for Discord" }
+        },
+        "how": {
+          "title": "Start a run, then just play.",
+          "steps": [
+            { "title": "Install it", "body": "Add the Tampermonkey extension, then install the script from the repo. On Chrome and Edge, turn on Allow User Scripts for Tampermonkey." },
+            { "title": "Start a run", "body": "Open Showdown, tap the Mock Regional badge, name your event and press Start run." },
+            { "title": "Ladder as usual", "body": "Play Bo3 sets in the format. Every game, replay, lead and note is recorded for you." },
+            { "title": "Share it", "body": "When the run ends, copy the post for Discord or grab the report card image." }
+          ],
+          "headsUp": "Everything stays in your browser. The only things that leave are replays you save to Showdown and, if you leave it on, a pokepast.es link for your team."
+        },
+        "works": {
+          "title": "Your record is the whole state machine.",
+          "body": [
+            "Every finished set is a win, a loss or a tie. Walk through them in order, count the losses, and the record tells you where you are: Day 1, Day 2, Top Cut, Eliminated or Champion.",
+            "Go over the loss limit in Swiss and you’re out. Any loss in top cut ends it. That’s the rule a real Regional runs on, in about a dozen lines."
+          ],
+          "code": "for (let i = 0; i < done.length && !stage; i++) {\n  const r = done[i].result;\n  if (r === 'W') wins++;\n  else if (r === 'L') losses++;\n  else ties++;\n\n  if (i >= swiss) {\n    // top cut: one loss and you're out\n    if (r === 'L') stage = 'Eliminated';\n    else if (i - swiss + 1 >= settings.topCutRounds) stage = 'Champion';\n  } else if (losses > settings.lossThreshold) {\n    // X-2 is still alive, X-3 is not\n    stage = 'Eliminated';\n  }\n}",
+          "callout": "trimmed from computeStage; the real one also lets you play on after you’re out"
+        },
+        "ideas": {
+          "title": "Where you could take it next.",
+          "items": [
+            { "tag": "pick up where it stops", "title": "Work out the spreads", "body": "The battle export has every line of every game but no EVs. Damage rolls and speed ties could fill them in. The script leaves that job open on purpose." },
+            { "tag": "plug it in", "title": "Dock it in the Restyler", "body": "The Showdown Restyler has a panel API, and registering the Mock Regional tab as a panel is next on the list." },
+            { "tag": "go bigger", "title": "A friends’ leaderboard", "body": "Everyone exports their runs. Merge the files and settle whose team really is best." }
+          ]
+        }
+      }
+    },
+    {
+      "id": "restyler",
+      "question": "What if Showdown gave the battle the whole screen?",
+      "game": "Pokémon Showdown",
+      "name": "Pokémon Showdown Restyler",
+      "note": "your first userscript?",
+      "tilt": "-.9deg",
+      "what": "A Tampermonkey script for the new Pokémon Showdown client. The battle field scales up past its old 640 by 360 box, the panes resize, the team sheet and chat get panels of their own, you can pin several side tabs at once, and there’s a light, dark or auto theme. Every part is a module you can switch off.",
+      "useWhen": [
+        "You play on a big monitor and the battle sits in a little box.",
+        "You want Showdex, chat and the team sheet on screen at the same time.",
+        "You stream and want a cleaner layout."
+      ],
+      "thenAsk": [
+        "How do you change a website you don’t own? With a script that runs on top of it.",
+        "Why wrap the page’s own functions instead of replacing them?",
+        "What panel would you add through its API?"
+      ],
+      "links": [
+        { "label": "Get the latest release", "href": "https://github.com/definitelybenny/showdown-restyler/releases/latest", "primary": true },
+        { "label": "See the code", "href": "https://github.com/definitelybenny/showdown-restyler" }
+      ],
+      "page": "tools/showdown-restyler/",
+      "next": "pokopia",
+      "detail": {
+        "status": "Live · new Showdown client",
+        "lede": "The Pokémon Showdown Restyler. A bigger battle, panes you can drag, chat and team sheets in their own panels, and a modern theme, built from small modules you can turn on and off.",
+        "what": {
+          "title": "Same Showdown, more room.",
+          "body": [
+            "The stock client keeps the battle in a small box and stacks everything else in one side panel. The Restyler gives the field room to grow and lets you put the things you watch side by side.",
+            "Drag the slider to compare the stock client with the restyled one."
+          ],
+          "callout": "drag it, I dare you",
+          "figure": {
+            "type": "beforeafter",
+            "before": { "src": "assets/shots/restyler-before.jpg", "alt": "The stock Pokémon Showdown client with a small battle field", "label": "stock" },
+            "after": { "src": "assets/shots/restyler-after-dark.jpg", "alt": "The restyled client with a large battle field and a dark theme", "label": "restyled" }
+          }
+        },
+        "how": {
+          "title": "Install it once, tweak it forever.",
+          "steps": [
+            { "title": "Install it", "body": "Add Tampermonkey, open the latest release and click showdown-restyler.user.js. It updates itself from there." },
+            { "title": "Open the new client", "body": "It works on the new Showdown client. On the classic one it stays out of the way." },
+            { "title": "Make it yours", "body": "Drag the bar between the battle and the side panel, drop side tabs where you want them, and open the gear for every option." }
+          ],
+          "headsUp": "The new client changes often, so an update on Showdown’s side can break something. Turning a module off puts that part back to stock."
+        },
+        "works": {
+          "title": "Wrap, don’t replace.",
+          "body": [
+            "Showdown has no plugin system, so the script wraps the client’s own functions: it adds its bit and then calls the original. Every patch can be undone, which is how each module switches off cleanly and why it can share the page with Showdex.",
+            "Other scripts get a small API to add panels of their own."
+          ],
+          "code": "// any userscript can add a panel through the Restyler\nShowdownRestyler.registerPanel({\n  id: 'my-panel',\n  title: 'Mine',\n  render(el) { el.textContent = 'hi'; }\n});\n\nShowdownRestyler.on('battle:line', ({ room, args }) => {\n  // args is the parsed protocol line\n});",
+          "callout": "this is the whole API, really"
+        },
+        "ideas": {
+          "title": "Where you could take it next.",
+          "items": [
+            { "tag": "make it yours", "title": "A theme editor", "body": "The client hard-codes about 170 colors with no CSS variables. Map them to tokens and anyone could paint their own skin." },
+            { "tag": "share it", "title": "Theme presets", "body": "Save a whole skin as JSON and pass it to a friend, using the export the settings already have." },
+            { "tag": "build on it", "title": "A panel of your own", "body": "A timer, a damage note, a scouting list. One registerPanel call puts it next to the battle." }
+          ]
+        }
+      }
+    }
+  ],
+
+  "secret": {
+    "question": "What should I build next?",
+    "game": "You found this one",
+    "note": "you opened them all!",
+    "title": "That one’s yours.",
+    "body": "You opened every question on the page, which makes you exactly the kind of person I build these for. Tell me what you wish existed for the games you play.",
+    "thenAsk": [
+      "What’s the small, annoying thing you do every time you play?",
+      "Could a page answer it for you?"
+    ]
+  },
+
+  "soon": [
+    { "question": "What actually happened in the battle I just lost?", "note": "early research, don’t look yet" },
+    { "question": "Something I keep wondering about late at night", "note": "WIP, don’t look yet" }
+  ],
+
+  "bench": [
+    { "name": "An app in the works", "badge": "Coming soon", "blurb": "Gets its own page, store badge and privacy policy the day it ships.", "progress": 62, "scrawl": "almost!", "tilt": "-1.2deg" },
+    { "name": "Another one", "badge": "Coming soon", "blurb": "Gets its own page, store badge and privacy policy the day it ships.", "progress": 35, "scrawl": "halfway-ish", "tilt": "1deg" },
+    { "name": "A sketch on a napkin", "badge": "Idea", "blurb": "Not started. It might become an app, or another question up above.", "progress": 8, "scrawl": "don’t hold me to it", "tilt": "-.6deg" }
+  ]
+}

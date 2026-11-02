@@ -1,3 +1,6 @@
 .superpowers/
 .claude/
 *.stackdump
+
+# fonts fetched by scripts/make_images.py
+scripts/.fonts/
