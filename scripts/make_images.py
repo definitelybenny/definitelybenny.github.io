@@ -5,14 +5,14 @@ Makes:
   favicon.ico            16 and 32 px tab icons (favicon.svg is the main one)
   apple-touch-icon.png   180 px phone home-screen icon
   assets/og.png          1200x630 link preview for the home page
-  tools/<id>/og.png      link preview for each tool page in projects.json
+
+Each tool page's own preview image is drawn by scripts/build.py, using og_image() from here.
 
 Needs Pillow (python3 -m pip install pillow). Fonts are fetched from Google Fonts
 into scripts/.fonts the first time it runs.
 
   python3 scripts/make_images.py
 """
-import json
 import math
 import re
 import urllib.request
@@ -212,20 +212,11 @@ def og_image(lines_or_text, scrawl):
 
 
 def main():
+    """The site-wide images. Each tool's preview image is drawn by scripts/build.py."""
     fav32, fav16 = favicon(32), favicon(16)
     fav32.save(ROOT / "favicon.ico", sizes=[(16, 16), (32, 32)], append_images=[fav16])
     touch_icon().save(ROOT / "apple-touch-icon.png", optimize=True)
     og_image(["Which furniture keeps", "four Pokémon happy?"], "tap to find out").save(ROOT / "assets" / "og.png", optimize=True)
-
-    data = json.loads((ROOT / "projects.json").read_text())
-    for q in data.get("questions", []):
-        page = q.get("page")
-        if not page:
-            continue
-        out = ROOT / page / "og.png"
-        out.parent.mkdir(parents=True, exist_ok=True)
-        og_image(q["question"], q["name"]).save(out, optimize=True)
-        print("wrote", out.relative_to(ROOT))
     print("wrote favicon.ico, apple-touch-icon.png, assets/og.png")
 
 
