@@ -5,3 +5,4 @@
 # fonts fetched by scripts/make_images.py
 scripts/.fonts/
 _site/
+__pycache__/
