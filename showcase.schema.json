@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://definitelybenny.dev/showcase.schema.json",
+  "title": "definitelybenny.dev showcase entry",
+  "description": "Put this file at the root of a repo tagged with the 'showcase' topic. It is everything definitelybenny.dev says about the project.",
+  "type": "object",
+  "required": ["question"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$", "description": "Used in the page address (definitelybenny.dev/tools/<id>/) and in other projects' 'next'. Defaults to the repo name." },
+    "order": { "type": "number", "description": "Lower comes first on the home page. Defaults to 999." },
+    "status": { "enum": ["live", "soon"], "default": "live", "description": "'soon' shows only the question, blurred, as a teaser." },
+    "question": { "type": "string", "description": "The question on the card. The project's headline." },
+    "game": { "type": "string", "description": "Small label above the question, like 'Pokémon VGC · Showdown'." },
+    "name": { "type": "string", "description": "The tool's name. Required when live." },
+    "note": { "type": "string", "description": "A handwritten aside under the question." },
+    "tilt": { "type": "string", "pattern": "^-?[0-9.]+deg$", "description": "How crooked the card sits at full chaos, like '-1.2deg'." },
+    "what": { "type": "string", "description": "What it is, in two or three sentences. Required when live." },
+    "useWhen": { "type": "array", "items": { "type": "string" }, "minItems": 1, "description": "Moments you'd reach for it. Required when live." },
+    "thenAsk": { "type": "array", "items": { "type": "string" }, "minItems": 1, "description": "Follow-up questions to get people curious. Required when live." },
+    "links": {
+      "type": "array",
+      "description": "Buttons. The repo link is added for you if it's missing.",
+      "items": {
+        "type": "object",
+        "required": ["label", "href"],
+        "properties": {
+          "label": { "type": "string" },
+          "href": { "type": "string", "pattern": "^https://" },
+          "primary": { "type": "boolean", "description": "The filled green button. Use on one link." }
+        }
+      }
+    },
+    "next": { "type": "string", "description": "id of the project whose question comes next. Defaults to the following project." },
+    "detail": {
+      "type": "object",
+      "description": "The tool's own page. Each part is optional.",
+      "properties": {
+        "status": { "type": "string", "description": "Green line above the title, like 'Live · Pokémon Showdown'." },
+        "lede": { "type": "string" },
+        "what": {
+          "type": "object",
+          "properties": {
+            "title": { "type": "string" },
+            "body": { "type": "array", "items": { "type": "string" } },
+            "callout": { "type": "string" },
+            "figure": {
+              "description": "A picture beside the text. Image paths are files in this repo.",
+              "oneOf": [
+                { "type": "object", "required": ["type"], "properties": { "type": { "const": "venn" } } },
+                { "type": "object", "required": ["type", "src", "alt"], "properties": { "type": { "const": "image" }, "src": { "type": "string" }, "alt": { "type": "string" }, "caption": { "type": "string" } } },
+                {
+                  "type": "object", "required": ["type", "before", "after"],
+                  "properties": {
+                    "type": { "const": "beforeafter" },
+                    "before": { "$ref": "#/$defs/shot" },
+                    "after": { "$ref": "#/$defs/shot" }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "how": {
+          "type": "object",
+          "properties": {
+            "title": { "type": "string" },
+            "steps": { "type": "array", "items": { "type": "object", "required": ["title", "body"], "properties": { "title": { "type": "string" }, "body": { "type": "string" } } } },
+            "headsUp": { "type": "string" }
+          }
+        },
+        "works": {
+          "type": "object",
+          "properties": {
+            "title": { "type": "string" },
+            "body": { "type": "array", "items": { "type": "string" } },
+            "code": { "type": "string", "description": "A short snippet. // comments and keywords are colored." },
+            "callout": { "type": "string" }
+          }
+        },
+        "ideas": {
+          "type": "object",
+          "properties": {
+            "title": { "type": "string" },
+            "items": { "type": "array", "items": { "type": "object", "required": ["title", "body"], "properties": { "tag": { "type": "string" }, "title": { "type": "string" }, "body": { "type": "string" } } } }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "shot": { "type": "object", "required": ["src", "alt"], "properties": { "src": { "type": "string" }, "alt": { "type": "string" }, "label": { "type": "string" } } }
+  }
+}

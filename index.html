@@ -1,79 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-chaos="3">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>definitelyBenny — Games & Apps</title>
-  <meta name="description" content="Games and apps by definitelyBenny. Ludimus, Ergo Discimus.">
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>definitelyBenny</title>
+  <meta name="description" content="Everything here started as a question. Small tools for the games I love, and how to build your own.">
+  <link rel="canonical" href="https://definitelybenny.dev/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="definitelyBenny">
+  <meta property="og:title" content="definitelyBenny">
+  <meta property="og:description" content="Everything here started as a question. Small tools for the games I love, and how to build your own.">
+  <meta property="og:url" content="https://definitelybenny.dev/">
+  <meta property="og:image" content="https://definitelybenny.dev/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Notebook paper with a taped card asking which furniture keeps four Pokémon happy, and a scribbled question mark">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#3D7643" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1D2923" media="(prefers-color-scheme: dark)">
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Franklin:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Caveat:wght@500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+  <script>(function(){var r=document.documentElement,c=3,t=null;try{var s=localStorage.getItem('dbd-chaos');if(s!==null&&/^[0-3]$/.test(s))c=+s;t=localStorage.getItem('dbd-theme')}catch(e){}r.setAttribute('data-chaos',c);if(t==='light'||t==='dark')r.setAttribute('data-theme',t)})();</script>
+  <link rel="stylesheet" href="assets/site.css">
 </head>
-<body>
-  <nav>
-    <div class="logo">definitelyBenny</div>
-    <div class="links">
-      <a href="/" class="active">Home</a>
-      <a href="#apps">Apps</a>
+<body data-root="./">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <g id="fav"><rect x="5" y="5" width="54" height="54" rx="14" fill="#3D7643" transform="rotate(-6 32 32)"/><path d="M23 25c0-7 5-12 11-12 7 0 11 5 11 10 0 6-4 8-8 11-3 2-4 4-4 8" fill="none" stroke="#F3F4EE" stroke-width="5.5" stroke-linecap="round"/><circle cx="33" cy="50" r="3.6" fill="#F3F4EE"/><path d="M48 9l3-4M53 15l5-1" stroke="#B4552E" stroke-width="3" stroke-linecap="round"/></g>
+</defs></svg>
+
+<header class="top"><div class="wrap">
+  <a class="brand" id="brand" href="./" aria-label="definitelyBenny home"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#fav"/></svg>definitelyBenny</a>
+  <nav class="nav" aria-label="Pages"><a href="#questions" class="cur">Questions</a><a href="#apps" class="opt">Apps</a><button class="theme" id="theme" type="button">Theme: system</button></nav>
+</div></header>
+
+<main class="wrap">
+  <div class="hero">
+    <div class="tag">live build · Benny makes things</div>
+    <h1>Everything here started as <em>a question.</em></h1>
+    <p class="lede">I build small tools for the games I love, and I show my work. Pick a question that makes you curious. You'll get the answer, the moments you'd reach for it, and what you could build next.</p>
+    <button class="mark" id="mark" type="button" aria-label="Open a random question">
+      <svg viewBox="0 0 260 240" aria-hidden="true"><path d="M78 78c0-32 26-52 56-52 34 0 56 22 56 50 0 26-18 38-36 50-14 9-20 18-20 34" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/><path d="M133 196c3 4 4 9 0 12-5 4-11 0-10-5 1-4 6-8 10-7z" fill="currentColor"/><path d="M40 40c-14 30-12 70 4 100" fill="none" stroke="currentColor" stroke-width="2.5" stroke-dasharray="4 7" stroke-linecap="round"/><text x="148" y="228">tap me</text><path d="M214 150c10 14 6 30-8 40" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M200 184l6 7 9-3" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+
+  <div class="sechead" id="questions"><h2>Questions so far</h2><span id="count">opening the notebook…</span></div>
+  <ul class="qs" id="qs"></ul>
+  <noscript>
+    <div class="noscript">
+      <p>The fun parts need JavaScript, but here are the tools:</p>
+      <p><!--TOOL_LINKS--></p>
     </div>
-  </nav>
+  </noscript>
 
-  <section class="hero">
-    <h1>definitelyBenny</h1>
-    <p class="subtitle">— Games & Apps —</p>
-  </section>
-
-  <section class="crest">
-    <div class="crest-placeholder"></div>
-  </section>
-
-  <section class="apps" id="apps">
-    <div class="app-grid">
-
-      <div class="app-card">
-        <div class="app-icon">🎲</div>
-        <h3>Board Game Empire</h3>
-        <p class="category">Strategy</p>
-        <p class="description">From a small garage workshop, build your board game development empire. Manage staff, create hits, and take the world stage.</p>
-        <a href="/board-game-empire/privacy-policy" class="privacy-link">Privacy Policy</a>
-      </div>
-
-      <div class="app-card">
-        <div class="app-icon">🚗</div>
-        <h3>Sunday Drive</h3>
-        <p class="category">Casual</p>
-        <p class="description">Explore scenic and challenging routes in a variety of classic tiles. Relaxing, scenic, and simple.</p>
-        <a href="/sunday-drive/privacy-policy" class="privacy-link">Privacy Policy</a>
-      </div>
-
-      <div class="app-card">
-        <div class="app-icon">🔷</div>
-        <h3>HexaGone</h3>
-        <p class="category">Puzzle</p>
-        <p class="description">Minimalist hex-based logic puzzles. Test your brain by flipping tiles to match a target pattern.</p>
-        <a href="/hexagone/privacy-policy" class="privacy-link">Privacy Policy</a>
-      </div>
-
-      <div class="app-card">
-        <div class="app-icon">💪</div>
-        <h3>Iron Log</h3>
-        <p class="category">Fitness</p>
-        <p class="description">Effective weightlifting and strength training tracker. Focus on raw numbers and PRs.</p>
-        <a href="/iron-log/privacy-policy" class="privacy-link">Privacy Policy</a>
-      </div>
-
-      <div class="app-card">
-        <div class="app-icon"><img src="pokopia-roommate-calc.png" alt="" /></div>
-        <h3>Pokopia Roommate Calculator</h3>
-        <p class="category">Tool</p>
-        <p class="description">Pick 2-4 Pokémon roommates in Pokopia and discover the furniture and items that make all of them happy.</p>
-        <a href="/pokopia-roommate-calc/" class="privacy-link">Launch &rarr;</a>
-      </div>
-
-    </div>
-  </section>
+  <div class="sechead" id="apps"><h2>Apps on the bench</h2><span>not ready, still peeking is allowed</span></div>
+  <div class="apps" id="bench"></div>
 
   <footer>
-    <p>&copy; 2026 definitelyBenny</p>
-    <p class="motto">Ludimus, Ergo Discimus</p>
+    <div class="dial" role="group" aria-label="Chaos level">
+      <b>how much chaos?</b>
+      <div class="opts" id="dial"><button type="button" data-c="0">Tidy</button><button type="button" data-c="1">Lived in</button><button type="button" data-c="2">Live build</button><button type="button" data-c="3">Unhinged</button></div>
+    </div>
+    <div class="flinks"><a href="#questions">Questions</a><a href="#apps">Apps</a><a href="https://github.com/definitelybenny" target="_blank" rel="noopener">GitHub</a></div>
+    <span>Made by Benny in a notebook that's mostly scribbles · definitelybenny.dev</span>
   </footer>
+</main>
+
+<script src="assets/site.js" defer></script>
 </body>
 </html>

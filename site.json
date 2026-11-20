@@ -1,0 +1,48 @@
+{
+  "_readme": "Site-wide content that is not a project. Projects come from repos tagged with the topic below, each carrying its own showcase.json. See README.md.",
+  "owner": "definitelybenny",
+  "topic": "showcase",
+  "secret": {
+    "question": "What should I build next?",
+    "game": "You found this one",
+    "note": "you opened them all!",
+    "title": "That one’s yours.",
+    "body": "You opened every question on the page, which makes you exactly the kind of person I build these for. Tell me what you wish existed for the games you play.",
+    "thenAsk": [
+      "What’s the small, annoying thing you do every time you play?",
+      "Could a page answer it for you?"
+    ]
+  },
+  "soon": [
+    {
+      "question": "Something I keep wondering about late at night",
+      "note": "WIP, don’t look yet"
+    }
+  ],
+  "bench": [
+    {
+      "name": "An app in the works",
+      "badge": "Coming soon",
+      "blurb": "Gets its own page, store badge and privacy policy the day it ships.",
+      "progress": 62,
+      "scrawl": "almost!",
+      "tilt": "-1.2deg"
+    },
+    {
+      "name": "Another one",
+      "badge": "Coming soon",
+      "blurb": "Gets its own page, store badge and privacy policy the day it ships.",
+      "progress": 35,
+      "scrawl": "halfway-ish",
+      "tilt": "1deg"
+    },
+    {
+      "name": "A sketch on a napkin",
+      "badge": "Idea",
+      "blurb": "Not started. It might become an app, or another question up above.",
+      "progress": 8,
+      "scrawl": "don’t hold me to it",
+      "tilt": "-.6deg"
+    }
+  ]
+}
