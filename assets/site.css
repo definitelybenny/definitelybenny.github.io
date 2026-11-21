@@ -1,6 +1,7 @@
 /* definitelyBenny: lab notebook.
    Keynote single column, Libre Caslon Display headings, Caveat scribbles.
    Notebook paper in light, chalkboard in dark. --chaos scales every tilt and scribble (dial in the footer). */
+:root{
   --paper:#F3F4EE; --line:#D2DDCA; --margin:#8DB58A;
   --ink:#1F251D; --ink-2:#56604F; --card:#FBFCF7; --tile:#EEF2DE; --tape:rgba(160,180,140,.5);
   --moss:#3D7643; --moss-ink:#FFFFFF; --pen:#B4552E; --stone:#8B8E84; --code:#E6EBDA;
