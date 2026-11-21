@@ -95,6 +95,9 @@ h1 em::after{content:"";position:absolute;left:-3%;right:-3%;bottom:-.04em;heigh
 .nextq{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
 .nextq span{font:400 22px/1.2 var(--display)}
 .nextq span b{display:block;font:700 20px var(--hand);color:var(--pen)}
+.nextq.near{background:transparent;padding:4px 8px 0;justify-content:flex-end}
+.nextq.near span{font:700 21px/1.2 var(--hand);color:var(--ink-2)}
+.nextq.near .btn svg{transform:rotate(90deg)}
 .flag{display:inline-block;font:700 18px/1.15 var(--hand);color:var(--paper);background:var(--pen);padding:3px 10px;border-radius:6px;transform:rotate(calc(var(--chaos) * 1.5deg))}
 .q.soon{background:transparent;box-shadow:none;border:2px dashed var(--stone)}
 .q.soon::before{display:none}

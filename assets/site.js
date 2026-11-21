@@ -142,7 +142,9 @@
             <div class="use"><span class="k">reach for it when</span><ul>${(t.useWhen || []).map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>
             <div class="row">${linkButtons(t)}</div></div>
           <div class="tile"><span class="k">then ask</span><div class="asks">${(t.thenAsk || []).map(x => `<div class="ask">${esc(x)}</div>`).join('')}</div></div>
-          ${n && n !== t ? `<div class="tile wide nextq"><span><b>next question</b>${esc(n.question)}</span><button class="btn" type="button" data-next="${esc(n.id)}">Ask it ${arrow}</button></div>` : ''}
+          ${n && n !== t ? (n === tools[i + 1]
+            ? `<div class="tile wide nextq near"><span>the next one is right below</span><button class="btn" type="button" data-next="${esc(n.id)}">Keep going ${arrow}</button></div>`
+            : `<div class="tile wide nextq"><span><b>next question</b>${esc(n.question)}</span><button class="btn" type="button" data-next="${esc(n.id)}">Ask it ${arrow}</button></div>`) : ''}
         </div></div></div>`;
       qs.appendChild(li);
     });
