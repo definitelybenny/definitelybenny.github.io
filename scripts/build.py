@@ -14,6 +14,7 @@ A tagged repo whose showcase.json is missing or invalid is skipped with a warnin
 build fails if no project is left, so a bad run never replaces the live site with an
 empty one.
 """
+import hashlib
 import argparse
 import html
 import io
@@ -231,7 +232,7 @@ TEMPLATE = """<!DOCTYPE html>
 
 <header class="top"><div class="wrap">
   <a class="brand" id="brand" href="{base}" aria-label="definitelyBenny home"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#fav"/></svg>definitelyBenny</a>
-  <nav class="nav" aria-label="Pages"><a href="{base}#questions" class="cur">Questions</a><a href="{base}#apps" class="opt">Apps</a><button class="theme" id="theme" type="button">Theme: system</button></nav>
+  <nav class="nav" aria-label="Pages"><a href="{base}#questions" class="cur">Questions</a><a href="{base}#apps" class="opt">Apps</a><button class="theme" id="theme" type="button" aria-label="Theme: system"><span class="tl">Theme: </span>system</button></nav>
 </div></header>
 
 <main class="wrap">
@@ -349,6 +350,12 @@ def main():
             primary_href=e(primary["href"]), primary_label=e(primary["label"]),
         ))
         og_image(q["question"], q["name"]).save(out / page / "og.png", optimize=True)
+
+    # stamp asset links so browsers never keep an old stylesheet or script after a deploy
+    stamp = hashlib.sha256((ROOT / "assets/site.css").read_bytes() + (ROOT / "assets/site.js").read_bytes()).hexdigest()[:10]
+    for page_file in out.rglob("*.html"):
+        t = page_file.read_text()
+        page_file.write_text(t.replace('assets/site.css"', f'assets/site.css?v={stamp}"').replace('assets/site.js"', f'assets/site.js?v={stamp}"'))
 
     print(f"Built {out}: {len(live)} projects, {len(soon)} coming soon from repos, {problems} warnings")
     if args.strict and problems:

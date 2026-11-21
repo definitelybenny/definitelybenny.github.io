@@ -23,8 +23,8 @@
 @media (max-width:640px){ :root[data-chaos="3"]{--chaos:2.1} :root[data-chaos="2"]{--chaos:1.4} }
 
 *{box-sizing:border-box}
-html{background:var(--paper)}
-body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+html{background:var(--paper);overflow-x:hidden;overflow-x:clip}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden;overflow-x:clip;
   background-image:linear-gradient(90deg,transparent 0 calc(max(16px,env(safe-area-inset-left,0px)) + 14px),var(--margin) 0 calc(max(16px,env(safe-area-inset-left,0px)) + 16px),transparent 0),repeating-linear-gradient(180deg,transparent 0 31px,var(--line) 31px 32px)}
 .wrap{max-width:1080px;margin:0 auto;padding-left:max(28px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 a{color:inherit}
@@ -33,13 +33,13 @@ a{color:inherit}
 .top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:21;background:var(--paper)}
 .top .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:12px}
-.brand{display:flex;color:var(--ink)!important;align-items:center;gap:10px;font:600 16px var(--body);text-decoration:none;background:none;border:0;color:var(--ink);cursor:pointer;padding:0}
+.brand{display:flex;white-space:nowrap;min-width:0;color:var(--ink)!important;align-items:center;gap:10px;font:600 16px var(--body);text-decoration:none;background:none;border:0;color:var(--ink);cursor:pointer;padding:0}
 .brand svg,.brand img{width:30px;height:30px;transform:rotate(calc(var(--chaos) * -2deg));transition:transform .3s}
-.nav{display:flex;gap:4px;align-items:center}
+.nav{display:flex;gap:4px;align-items:center;flex-shrink:0}
 .nav a{font:600 14px var(--body);text-decoration:none;padding:7px 11px;border-radius:999px}
 .nav a.cur{background:var(--ink);color:var(--paper)}
 .nav a:hover:not(.cur){background:var(--tile)}
-.theme{font:600 13px var(--body);background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:7px 11px;cursor:pointer}
+.theme{white-space:nowrap;font:600 13px var(--body);background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:7px 11px;cursor:pointer}
 
 .hero{text-align:center;display:grid;justify-items:center;gap:14px;padding-block:clamp(28px,7vw,84px) 24px}
 .tag{font:700 23px/1 var(--hand);color:var(--moss);transform:rotate(calc(var(--chaos) * -2deg))}
@@ -181,5 +181,13 @@ footer{margin-top:60px;border-top:1px solid var(--line);padding-block:30px calc(
   .q{--dx:0px!important;--dy:0px!important}
   .nav a.opt{display:none}
   .scribble.s3.txt{display:none}
+}
+/* phones: the logo already goes home, so the header keeps just the theme button */
+@media (max-width:480px){
+  .top .wrap{gap:8px}
+  .brand{gap:8px;font-size:15px}
+  .brand svg,.brand img{width:26px;height:26px}
+  .nav a{display:none}
+  .theme .tl{display:none}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}

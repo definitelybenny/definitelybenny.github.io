@@ -60,7 +60,7 @@
   let mode = modes.includes(store.get('dbd-theme')) ? store.get('dbd-theme') : 'system';
   function applyTheme() {
     mode === 'system' ? root.removeAttribute('data-theme') : root.setAttribute('data-theme', mode);
-    if (themeBtn) themeBtn.textContent = 'Theme: ' + mode;
+    if (themeBtn) { themeBtn.innerHTML = '<span class="tl">Theme: </span>' + mode; themeBtn.setAttribute('aria-label', 'Theme: ' + mode); }
     store.set('dbd-theme', mode === 'system' ? null : mode);
   }
   themeBtn?.addEventListener('click', () => { mode = modes[(modes.indexOf(mode) + 1) % 3]; applyTheme(); });
